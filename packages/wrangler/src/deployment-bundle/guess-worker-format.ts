@@ -38,6 +38,7 @@ export default async function guessWorkerFormat(
 		metafile: true,
 		bundle: false,
 		write: false,
+		logLevel: "silent",
 		...(tsconfig && { tsconfig }),
 	});
 
