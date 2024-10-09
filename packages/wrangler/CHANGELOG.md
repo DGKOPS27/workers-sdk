@@ -1,5 +1,22 @@
 # wrangler
 
+## 3.81.0
+
+### Minor Changes
+
+- [#6932](https://github.com/cloudflare/workers-sdk/pull/6932) [`4c6aad0`](https://github.com/cloudflare/workers-sdk/commit/4c6aad05b919a56484d13e4a49b861dcafbc0a2c) Thanks [@vicb](https://github.com/vicb)! - fix: allow `require`ing unenv aliased packages
+
+  Before this PR `require`ing packages aliased in unenv would fail.
+  That's because `require` would load the mjs file.
+
+  This PR adds wraps the mjs file in a virtual ES module to allow `require`ing it.
+
+### Patch Changes
+
+- [#6920](https://github.com/cloudflare/workers-sdk/pull/6920) [`2e64968`](https://github.com/cloudflare/workers-sdk/commit/2e649686c259c639701a62e754c53448cb694dfc) Thanks [@vicb](https://github.com/vicb)! - chore: update unenv dependency version
+
+  Pulls in [feat(node/net): implement Server mock](https://github.com/unjs/unenv/pull/316).
+
 ## 3.80.2
 
 ### Patch Changes
