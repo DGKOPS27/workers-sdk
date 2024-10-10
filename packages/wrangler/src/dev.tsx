@@ -476,6 +476,11 @@ async function updateDevEnvRegistry(
 	devEnv: DevEnv,
 	registry: WorkerRegistry | undefined
 ) {
+	// Make sure we're not patching an empty config
+	if (!devEnv.config.latestConfig) {
+		await events.once(devEnv.config, "configUpdate");
+	}
+
 	let boundWorkers = await getBoundRegisteredWorkers(
 		{
 			name: devEnv.config.latestConfig?.name,
@@ -496,11 +501,6 @@ async function updateDevEnvRegistry(
 	// Normalise an empty registry to undefined
 	if (boundWorkers && Object.keys(boundWorkers).length === 0) {
 		boundWorkers = undefined;
-	}
-
-	// Make sure we're not patching an empty config
-	if (!devEnv.config.latestConfig) {
-		await events.once(devEnv, "configUpdate");
 	}
 
 	if (

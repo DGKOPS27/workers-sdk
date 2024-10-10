@@ -18,8 +18,8 @@ import express from "express";
 import { createHttpTerminator } from "http-terminator";
 import { fetch } from "undici";
 import { version as wranglerVersion } from "../package.json";
+import { getRegistryPath } from "./environment-variables/misc-variables";
 import { getFlag } from "./experimental-flags";
-import { getGlobalWranglerConfigPath } from "./global-wrangler-config-path";
 import { logger } from "./logger";
 import type { Binding } from "./api";
 import type { Config } from "./config";
@@ -34,7 +34,7 @@ if (Number.isNaN(DEV_REGISTRY_PORT)) {
 }
 const DEV_REGISTRY_HOST = `http://127.0.0.1:${DEV_REGISTRY_PORT}`;
 
-const DEV_REGISTRY_PATH = path.join(getGlobalWranglerConfigPath(), "registry");
+const DEV_REGISTRY_PATH = getRegistryPath();
 
 let globalServer: Server | null;
 let globalTerminator: HttpTerminator;
